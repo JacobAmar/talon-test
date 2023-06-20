@@ -3,8 +3,8 @@ repositories:
    url: https://kubernetes.github.io/autoscaler
  - name: aws
    url: https://aws.github.io/eks-charts
- - name: graviteeio
-   url: https://helm.gravitee.io
+ - name: metrics-server
+   url: https://kubernetes-sigs.github.io/metrics-server
 
 helmDefaults:
   kubeContext: us-east-1-talon-eks
@@ -24,6 +24,12 @@ releases:
   values:
     - ../../../../helm/cluster-autoscaler/values.yaml
 
+- name: metrics-server
+  namespace: kube-system
+  chart: metrics-server/metrics-server
+  version: 3.10.0
+
+
 - name: cockpit
   namespace: cockpit
   chart: ../../../../helm/cockpit
@@ -32,3 +38,4 @@ releases:
   needs:
    - us-east-1-talon-eks/kube-system/load-balancer-controller
    - us-east-1-talon-eks/kube-system/cluster-autoscaler
+   - us-east-1-talon-eks/kube-system/metrics-server
