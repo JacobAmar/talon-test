@@ -1,0 +1,16 @@
+image: cockpithq/cockpit:core-2.5.2
+replicas: 1
+service:
+  # on which port to expose?
+  port: 8080
+  type: LoadBalancer
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-name: cockpit-talon-test
+mongodb:
+  auth:
+    enabled: false
+  replicaCount: 1
+  service:
+    nameOverride: "mongodb"
+  persistence:
+    enabled: false

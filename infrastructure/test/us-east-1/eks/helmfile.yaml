@@ -1,0 +1,35 @@
+repositories:
+ - name: cluster-autoscaler
+   url: https://kubernetes.github.io/autoscaler
+ - name: aws
+   url: https://aws.github.io/eks-charts
+ - name: graviteeio
+   url: https://helm.gravitee.io
+
+helmDefaults:
+  kubeContext: us-east-1-talon-eks
+
+releases:
+- name: load-balancer-controller
+  namespace: kube-system
+  chart: aws/aws-load-balancer-controller
+  version: 1.5.3
+  values:
+    - ../../../../helm/load-balancer-controller/values.yaml
+
+- name: cluster-autoscaler
+  namespace: kube-system
+  chart: cluster-autoscaler/cluster-autoscaler
+  version: 9.29.1
+  values:
+    - ../../../../helm/cluster-autoscaler/values.yaml
+
+# - name: cockpit
+#   namespace: cockpit
+#   chart: graviteeio/cockpit
+#   version: 1.8.4
+#   values:
+#     - ../../../../helm/cockpit/values.yaml
+#   needs:
+#    - us-east-1-talon-eks/kube-system/load-balancer-controller
+#    - us-east-1-talon-eks/kube-system/cluster-autoscaler
