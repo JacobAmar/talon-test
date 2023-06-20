@@ -4,3 +4,6 @@ serviceAccount:
   name: lb-controller
   annotations:
     eks.amazonaws.com/role-arn: "arn:aws:iam::694897697780:role/us-east-1-lb-controller-irsa"
+controllerConfig:
+  featureGates:
+    SubnetsClusterTagCheck: false

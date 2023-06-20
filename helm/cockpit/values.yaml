@@ -5,7 +5,8 @@ service:
   port: 8080
   type: LoadBalancer
   annotations:
-    service.beta.kubernetes.io/aws-load-balancer-name: cockpit-talon-test
+    service.beta.kubernetes.io/aws-load-balancer-name: "cockpit-talon-test"
+    service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
 mongodb:
   auth:
     enabled: false
