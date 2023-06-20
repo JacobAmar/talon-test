@@ -5,7 +5,6 @@ metadata:
   labels:
     app: cockpit
 spec:
-  replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
       app: cockpit
@@ -17,6 +16,7 @@ spec:
       containers:
       - name: cockpit
         image: {{ .Values.image }}
+        resources: {{ toYaml .Values.resources | nindent 10 }}
         ports:
         - containerPort: 80
         volumeMounts:

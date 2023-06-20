@@ -1,5 +1,19 @@
 image: cockpithq/cockpit:core-2.5.2
-replicas: 1
+resources:
+  requests:
+    cpu: "500m"
+  limits:
+    cpu: "1000m"
+hpa:
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 80
 service:
   # on which port to expose?
   port: 8080
