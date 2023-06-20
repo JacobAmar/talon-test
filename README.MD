@@ -23,3 +23,13 @@ cd infrastructure/test/us-east-1/eks
 
 helmfile sync
 ```
+
+# step 4:
+## Access the cockpit LB
+
+you can get the cockpit lb dns name by performing:
+```bash
+kubectl get svc -n cockpit -owide
+```
+take the external ip and access it through the browser with port 8080
+
