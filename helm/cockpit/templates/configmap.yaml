@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cockpit-cm
+data:
+  config.php: |
+{{ .Files.Get "files/config.php" | indent 4 }}

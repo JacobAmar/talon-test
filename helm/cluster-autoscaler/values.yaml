@@ -1,0 +1,11 @@
+autoDiscovery:
+  clusterName: us-east-1-talon-eks
+
+awsRegion: us-east-1
+
+rbac:
+  serviceAccount:
+    create: true
+    name: "cluster-autoscaler"
+    annotations:
+      eks.amazonaws.com/role-arn: "arn:aws:iam::694897697780:role/us-east-1-cluster-autoscaler"

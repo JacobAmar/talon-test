@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cockpit
+  labels:
+    app: cockpit
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: cockpit
+  template:
+    metadata:
+      labels:
+        app: cockpit
+    spec:
+      containers:
+      - name: cockpit
+        image: {{ .Values.image }}
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: cockpit-cm
+          mountPath: "/config/config.php"
+          subPath: config.php
+      volumes:
+      - name: cockpit-cm
+        configMap:
+          name: cockpit-cm
