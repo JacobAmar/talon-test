@@ -24,12 +24,11 @@ releases:
   values:
     - ../../../../helm/cluster-autoscaler/values.yaml
 
-# - name: cockpit
-#   namespace: cockpit
-#   chart: graviteeio/cockpit
-#   version: 1.8.4
-#   values:
-#     - ../../../../helm/cockpit/values.yaml
-#   needs:
-#    - us-east-1-talon-eks/kube-system/load-balancer-controller
-#    - us-east-1-talon-eks/kube-system/cluster-autoscaler
+- name: cockpit
+  namespace: cockpit
+  chart: ../../../../helm/cockpit
+  values:
+    - ../../../../helm/cockpit/values.yaml
+  needs:
+   - us-east-1-talon-eks/kube-system/load-balancer-controller
+   - us-east-1-talon-eks/kube-system/cluster-autoscaler
